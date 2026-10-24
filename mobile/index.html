@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CAC 40 Palmarès</title>
+  <meta name="description" content="Top et flop du CAC 40, graphiques et agenda des résultats">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CAC 40">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>CAC 40</h1>
+      <p id="updated" class="muted">Chargement…</p>
+    </div>
+    <div class="index-box">
+      <span id="index-level" class="index-level">–</span>
+      <span id="index-perf" class="pill">–</span>
+    </div>
+  </header>
+
+  <nav class="periods" id="periods" aria-label="Période"></nav>
+
+  <main>
+    <!-- Palmarès -->
+    <section id="view-rank" class="view active">
+      <div class="segmented" role="tablist">
+        <button class="seg active" data-side="top" role="tab">Top 10</button>
+        <button class="seg" data-side="flop" role="tab">Flop 10</button>
+      </div>
+      <div class="card chart-card"><canvas id="rank-chart" height="360"></canvas></div>
+      <ul id="rank-list" class="list"></ul>
+      <p class="muted small">Touchez une valeur pour voir son graphique.</p>
+    </section>
+
+    <!-- Graphique -->
+    <section id="view-chart" class="view">
+      <label class="select-wrap">
+        <span class="sr-only">Valeur</span>
+        <select id="stock-select"></select>
+      </label>
+      <div class="stock-head">
+        <div>
+          <div id="stock-name" class="stock-name">–</div>
+          <div id="stock-meta" class="muted small">–</div>
+        </div>
+        <div class="right">
+          <div id="stock-last" class="stock-last">–</div>
+          <span id="stock-perf" class="pill">–</span>
+        </div>
+      </div>
+      <div class="card chart-card"><canvas id="price-chart" height="300"></canvas></div>
+      <label class="toggle"><input type="checkbox" id="compare"> Comparer au CAC 40 (base 100)</label>
+      <h2>Réactions aux résultats</h2>
+      <div id="stats" class="stats"></div>
+      <ul id="events" class="list"></ul>
+    </section>
+
+    <!-- Agenda -->
+    <section id="view-agenda" class="view">
+      <p class="muted small">Prochaines publications. « ± x % » = variation moyenne du titre le jour de ses précédents résultats.</p>
+      <div id="agenda"></div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Navigation">
+    <button class="tab active" data-view="rank"><span aria-hidden="true">🏆</span>Palmarès</button>
+    <button class="tab" data-view="chart"><span aria-hidden="true">📈</span>Graphique</button>
+    <button class="tab" data-view="agenda"><span aria-hidden="true">🗓️</span>Agenda</button>
+  </nav>
+
+  <script src="vendor/chart-4.4.1.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

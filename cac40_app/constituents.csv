@@ -1,0 +1,41 @@
+ticker,name,sector
+AC.PA,Accor,Hôtellerie
+AI.PA,Air Liquide,Chimie
+AIR.PA,Airbus,Aéronautique
+MT.AS,ArcelorMittal,Sidérurgie
+CS.PA,AXA,Assurance
+BNP.PA,BNP Paribas,Banque
+EN.PA,Bouygues,Construction
+BVI.PA,Bureau Veritas,Services aux entreprises
+CAP.PA,Capgemini,Services informatiques
+CA.PA,Carrefour,Distribution
+ACA.PA,Crédit Agricole,Banque
+BN.PA,Danone,Agroalimentaire
+DSY.PA,Dassault Systèmes,Logiciels
+FGR.PA,Eiffage,Construction
+ENGI.PA,Engie,Énergie
+EL.PA,EssilorLuxottica,Santé
+ERF.PA,Eurofins Scientific,Santé
+ENX.PA,Euronext,Services financiers
+RMS.PA,Hermès,Luxe
+KER.PA,Kering,Luxe
+OR.PA,L'Oréal,Cosmétiques
+LR.PA,Legrand,Équipements électriques
+MC.PA,LVMH,Luxe
+ML.PA,Michelin,Automobile
+ORA.PA,Orange,Télécoms
+RI.PA,Pernod Ricard,Spiritueux
+PUB.PA,Publicis,Médias
+RNO.PA,Renault,Automobile
+SAF.PA,Safran,Aéronautique
+SGO.PA,Saint-Gobain,Matériaux
+SAN.PA,Sanofi,Santé
+SU.PA,Schneider Electric,Équipements électriques
+GLE.PA,Société Générale,Banque
+STLAP.PA,Stellantis,Automobile
+STMPA.PA,STMicroelectronics,Semi-conducteurs
+HO.PA,Thales,Défense
+TTE.PA,TotalEnergies,Énergie
+URW.PA,Unibail-Rodamco-Westfield,Immobilier
+VIE.PA,Veolia,Services aux collectivités
+DG.PA,Vinci,Construction
