@@ -28,6 +28,39 @@ L'application s'ouvre dans le navigateur (http://localhost:8501). Les cours sont
 en cache 15 minutes et l'agenda 6 heures ; le bouton « Rafraîchir les données »
 force une mise à jour.
 
+## Application mobile
+
+Le dossier `mobile/` contient une application web installable (PWA) adaptée au
+téléphone, avec trois écrans :
+
+- **Palmarès** : top 10 / flop 10 en graphique, avec un choix de période (1J à 1A) ;
+- **Graphique** : courbe de cours de chaque valeur, losanges verts ou rouges aux dates
+  de résultats (réaction du jour J) et comparaison possible avec le CAC 40 en base 100 ;
+- **Agenda** : prochaines publications, jour par jour.
+
+Elle est hébergée gratuitement sur **GitHub Pages**. Le workflow
+`.github/workflows/mobile.yml` récupère les données toutes les 30 minutes pendant la
+séance, puis publie le site. Aucun serveur n'est nécessaire.
+
+### Mise en route (une seule fois)
+
+1. Fusionner la pull request dans `main`.
+2. Dans GitHub : **Settings → Pages → Build and deployment → Source : « GitHub Actions »**.
+3. Onglet **Actions** → « Application mobile » → **Run workflow** (première publication).
+4. Ouvrir `https://vuthypin.github.io/Logo/` sur le téléphone, puis :
+   - **iPhone (Safari)** : bouton Partager → « Sur l'écran d'accueil » ;
+   - **Android (Chrome)** : menu ⋮ → « Installer l'application ».
+
+L'icône « CAC 40 » apparaît alors sur l'écran d'accueil et l'application s'ouvre en
+plein écran. Les dernières données restent consultables hors connexion.
+
+Pour tester l'application en local :
+
+```bash
+python scripts/export_data.py mobile/data.json
+python -m http.server -d mobile 8000   # puis http://localhost:8000
+```
+
 ## Données
 
 - **Cours** : Yahoo Finance via `yfinance`, cours ajustés des dividendes. Les cours
