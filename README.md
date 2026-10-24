@@ -1,0 +1,69 @@
+# CAC 40 – Palmarès & agenda des résultats
+
+Tableau de bord (Streamlit) qui affiche :
+
+1. **Palmarès** : le top 10 et le flop 10 du CAC 40 sur la période choisie
+   (1 jour, 5 jours, 1 mois, 3 mois, 6 mois, depuis le 1er janvier, 1 an), avec la
+   performance de l'indice, le classement complet des 40 valeurs et la performance
+   moyenne par secteur.
+2. **Agenda des résultats** : les publications à venir, avec pour chaque société sa
+   performance récente et l'amplitude moyenne de ses réactions passées (pour repérer
+   les publications à risque), ainsi que les publications récentes et la réaction du
+   marché.
+3. **Impact des résultats** : pour chaque valeur, la réaction du cours à ses
+   publications sur environ 4 ans (variation le jour J, surperformance par rapport au
+   CAC 40, dérive sur 5 séances, surprise sur le BPA) et un graphique du cours avec les
+   publications passées et à venir.
+
+## Installation et lancement
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Windows : .venv\Scripts\activate
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+L'application s'ouvre dans le navigateur (http://localhost:8501). Les cours sont mis
+en cache 15 minutes et l'agenda 6 heures ; le bouton « Rafraîchir les données »
+force une mise à jour.
+
+## Données
+
+- **Cours** : Yahoo Finance via `yfinance`, cours ajustés des dividendes. Les cours
+  peuvent avoir environ 15 minutes de retard en séance.
+- **Dates de résultats** : Yahoo Finance (page « earnings calendar » et calendrier de
+  chaque valeur). Pour les sociétés européennes, la couverture de Yahoo n'est pas
+  toujours complète. Vous pouvez donc ajouter ou corriger des dates dans
+  `cac40_app/agenda_manuel.csv`. Ces dates sont prioritaires sur celles de Yahoo pour
+  le même jour :
+
+  ```csv
+  ticker,date,timing,label
+  MC.PA,2027-01-27,apres_cloture,Résultats annuels 2026
+  TTE.PA,2027-02-11,avant_ouverture,Résultats T4
+  ```
+
+  `timing` vaut `avant_ouverture` ou `apres_cloture`. Il détermine la séance qui sert
+  à mesurer la réaction.
+- **Composition de l'indice** : `cac40_app/constituents.csv` (dernier changement :
+  Eiffage a remplacé Edenred le 22/12/2025). Mettez ce fichier à jour après chaque
+  révision trimestrielle d'Euronext.
+
+## Méthode de calcul de la réaction aux résultats
+
+- Publication **avant l'ouverture** (cas le plus fréquent à Paris) : clôture du jour J
+  comparée à la clôture de la veille.
+- Publication **après la clôture** : clôture du lendemain comparée à la clôture du
+  jour J.
+- **Surperformance** : réaction du titre moins la variation du CAC 40 sur la même
+  séance.
+
+## Tests
+
+```bash
+pip install pytest
+python -m pytest
+```
+
+*Données indicatives, sans valeur de conseil en investissement.*
